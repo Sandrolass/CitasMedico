@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
+import { CitaService } from './services/cita.service';
 
 
 
@@ -20,7 +21,9 @@ import { MatCardModule } from '@angular/material/card';
     FormsModule,
     MatCardModule,
   ],
-  providers: [],
+  providers: [
+    CitaService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
