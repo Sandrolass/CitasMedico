@@ -14,10 +14,10 @@ let Fecha = new Schema({
 
 let Medico = new Schema({
     nombre:{type:String},
-    apellidos:{type:String},
+    apellido:{type:String},
     dni:{type:String},
     refM:{type:String},
-    Fecha:[]
+    fecha:[Fecha]
 },{collection:"medicos"});
 
 module.exports = mongoose.model("Medico",Medico);
