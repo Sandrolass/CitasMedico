@@ -4,6 +4,14 @@ const mongoose = require("mongoose");
 
 const app = express();
 const dbconfig = require("./db/db");
+mongoose.Promise = global.Promise;
+mongoose.connect(dbconfig.db,{useNewUrlParser:true}).then(
+    ()=>{
+        console.log("bbdd conectada");
+    }, error =>{
+        console.log(error);
+    }
+)
 const port = 8080;
 
 const usuarioRoute = require("./routes/usuarios.route");

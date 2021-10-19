@@ -8,8 +8,7 @@ let Usuario = require("../models/Usuario");
 usuarioRoute.route("/").get((req,res,next)=>{
     console.log("descargando datos de pacientes");
     Usuario.find((err,data)=>{
-        console.log(data);
-        console.log(err);
+        
         if(err){
             res.send(err);
             
