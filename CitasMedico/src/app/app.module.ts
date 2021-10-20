@@ -9,6 +9,8 @@ import { CitaService } from './services/cita.service';
 import { CalendarioComponent } from './calendario/calendario.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { MatButtonModule } from '@angular/material/button';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import { MatButtonModule } from '@angular/material/button';
     BrowserAnimationsModule,
     FormsModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    MatNativeDateModule,
+    MatDatepickerModule
   ],
   providers: [
     CitaService
