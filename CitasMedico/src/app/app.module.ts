@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { DateTimePickerModule } from '@syncfusion/ej2-angular-calendars';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -10,12 +9,18 @@ import { CitaService } from './services/cita.service';
 import { CalendarioComponent } from './calendario/calendario.component';
 import { HttpClientModule } from '@angular/common/http';
 
+import { NotFoundComponent } from './not-found/not-found.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { DateTimePickerModule } from '@syncfusion/ej2-angular-calendars';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    CalendarioComponent
+    CalendarioComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -24,7 +29,10 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     MatCardModule,
     DateTimePickerModule,
-    HttpClientModule
+    HttpClientModule,
+    MatButtonModule,
+    MatNativeDateModule,
+    MatDatepickerModule
   ],
   providers: [
     CitaService
