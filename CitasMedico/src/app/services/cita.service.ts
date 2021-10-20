@@ -3,14 +3,14 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { Cita } from '../models/cita';
 import { catchError } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CitaService {
 
-  /* Aquí o en enviroment como se prefiera */
-  urlBase = "http://localhost:4000/cita/";
+  urlBase = environment.urlBase + "citas";
 
   constructor(private http: HttpClient) { }
 
