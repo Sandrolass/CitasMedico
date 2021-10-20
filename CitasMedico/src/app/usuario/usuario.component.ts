@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { throwError } from 'rxjs';
 import { UsuarioService } from '../services/usuario.service';
 
 @Component({
@@ -16,17 +17,20 @@ export class UsuarioComponent implements OnInit {
     apellidos: [null, Validators.required]
   });
 
-  constructor(private fb: FormBuilder, private usuariosService: UsuarioService, private route: ActivatedRoute) { }
+  constructor(private fb: FormBuilder, private usuariosService: UsuarioService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.limpiarFormulario();
   }
 
   enviar(){    
-      this.usuariosService.loginUser(this.formGroup.value).subscribe(data => {
-        console.log("DESDE USUARIOS SERVICE:"); console.log(data)
-        //Logica de lo que se necesite
-      });
+      this.usuariosService.loginUser(this.formGroup.value).subscribe(
+        () => {
+          //this.router.navigate(['/calendario']);
+          },
+        (err: any) => {
+            return throwError(err);
+          });
     
     this.limpiarFormulario();
   }
