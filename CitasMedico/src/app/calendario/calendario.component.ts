@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MAT_DATE_FORMATS } from '@angular/material/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 
 export const MY_DATE_FORMATS = {
@@ -34,7 +35,7 @@ export class CalendarioComponent implements OnInit {
     {name: '8:00'},
   ];
 
-  constructor() { }
+  constructor(public dialogRef: MatDialogRef<CalendarioComponent>, @Inject(MAT_DIALOG_DATA) public data:any) { }
 
   ngOnInit(): void {
   }

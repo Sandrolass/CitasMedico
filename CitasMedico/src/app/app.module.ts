@@ -15,6 +15,7 @@ import { CalendarioComponent } from './calendario/calendario.component';
 import { HttpClientModule } from '@angular/common/http';
 
 import { NotFoundComponent } from './not-found/not-found.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
     MatNativeDateModule,
     MatDatepickerModule,
     MatSelectModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDialogModule
   ],
   providers: [
     {
@@ -57,7 +59,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
         },
       },
     },
-    CitaService,
+    CitaService,CalendarioComponent
   ],
   bootstrap: [AppComponent]
 })
