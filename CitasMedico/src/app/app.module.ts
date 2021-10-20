@@ -8,13 +8,15 @@ import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { CitaService } from './services/cita.service';
 import { CalendarioComponent } from './calendario/calendario.component';
-
+import { NotFoundComponent } from './not-found/not-found.component';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    CalendarioComponent
+    CalendarioComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -23,6 +25,7 @@ import { CalendarioComponent } from './calendario/calendario.component';
     FormsModule,
     MatCardModule,
     DateTimePickerModule,
+    MatButtonModule
   ],
   providers: [
     CitaService
