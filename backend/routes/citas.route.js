@@ -42,6 +42,7 @@ citasRoute.route("/getC/:refM").get((req,res,next)=>{
 });
 
 citasRoute.route("/getU/:dni").get((req,res,next)=>{
+    console.log("descargando cita por dni");
     let dni = req.params.dni;
     Cita.find({refUsuario:dni},(err,data)=>{
         if(err){
@@ -52,7 +53,41 @@ citasRoute.route("/getU/:dni").get((req,res,next)=>{
     });
 });
 
-/* citasRoute.route("/").post((req,res,next)=>{
-    Cita.find()
-}) */
+ citasRoute.route("/").post((req,res,next)=>{
+     console.log("creando cita");
+     let cita = req.body;
+    Cita.create(cita,(err,data)=>{
+        if(err){
+            return next(err);
+        }else{
+            res.json(data);
+        }
+    });
+});
+
+citasRoute.route("/:id").put((req,res,next)=>{
+    console.log("actualizando cita")
+    let id = req.params.id;
+    let citaUp = req.body;
+    Cita.findByIdAndUpdate(id,{$set:citaUp},{new:true},(err,data)=>{
+        if(err){
+            return next(err);
+        }else{
+            res.json(data);
+        }
+    });
+});
+citasRoute.route("/:id").delete((req,res,next)=>{
+    console.log("eliminando cita");
+    let id = req.params.id;
+    Cita.findByIdAndDelete(id,(err,data)=>{
+        if(err){
+            return next(err);
+        }else{
+            res.json(data);
+        }
+    });
+});
+
+module.exports = citasRoute;
 
