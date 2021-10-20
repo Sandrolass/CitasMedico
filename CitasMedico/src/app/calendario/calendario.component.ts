@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { MAT_DATE_FORMATS } from '@angular/material/core';
+
 
 export const MY_DATE_FORMATS = {
   parse: {
@@ -13,6 +15,10 @@ export const MY_DATE_FORMATS = {
   },
 };
 
+interface Hour {
+  name: string;
+}
+
 @Component({
   selector: 'app-calendario',
   templateUrl: './calendario.component.html',
@@ -22,6 +28,11 @@ export const MY_DATE_FORMATS = {
   ]
 })
 export class CalendarioComponent implements OnInit {
+  hoursControl = new FormControl('', Validators.required);
+  selectFormControl = new FormControl('', Validators.required);
+  hours: Hour[] = [
+    {name: '8:00'},
+  ];
 
   constructor() { }
 
