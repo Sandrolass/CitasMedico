@@ -1,22 +1,38 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
+import { MAT_DATE_FORMATS } from '@angular/material/core';
+
+
+export const MY_DATE_FORMATS = {
+  parse: {
+    dateInput: 'DD/MM/YYYY',
+  },
+  display: {
+    dateInput: 'DD/MM/YYYY',
+    monthYearLabel: 'MMMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY'
+  },
+};
+
+interface hour {
+  name: string;
+}
 
 @Component({
   selector: 'app-calendario',
   templateUrl: './calendario.component.html',
-  styleUrls: ['./calendario.component.css']
+  styleUrls: ['./calendario.component.css'],
+  providers: [
+    { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS }
+  ]
 })
 export class CalendarioComponent implements OnInit {
-
-  public today: Date = new Date();
-  public currentYear: number = this.today.getFullYear();
-  public currentMonth: number = this.today.getMonth();
-  public currentDay: number = this.today.getDate();
-  public currentHour: number = this.today.getHours();
-  public currentMinute: number = this.today.getMinutes();
-  public currentSecond: number = this.today.getSeconds();
-  public date: Date = new Date(new Date().setDate(14));
-  public minDate: Date = new Date(this.currentYear,this.currentMonth,7,0,0,0);
-  public maxDate: Date = new Date(this.currentYear,this.currentMonth,27,this.currentHour,this.currentMinute,this.currentSecond);
+  hoursControl = new FormControl('', Validators.required);
+  selectFormControl = new FormControl('', Validators.required);
+  hours: hour[] = [
+    {name: '8:00'},
+  ];
 
   constructor() { }
 

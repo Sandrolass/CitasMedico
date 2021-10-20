@@ -8,12 +8,12 @@ import { environment } from 'src/environments/environment';
 })
 export class UsuarioService {
 
-  urlBase = environment.urlBase + "usuarios";
+  urlBase = environment.urlBase;
 
   constructor(private http: HttpClient) { }
 
   loginUser(credentials: any): Observable<any> {
-    let url = this.urlBase + "getU/" + credentials.dni;
+    let url = this.urlBase + "usuarios/getU/" + credentials.dni;
     return this.http.get(url);
   }
 }
