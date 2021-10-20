@@ -7,6 +7,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { CitaService } from './services/cita.service';
 import { CalendarioComponent } from './calendario/calendario.component';
+import { HttpClientModule } from '@angular/common/http';
+
 import { NotFoundComponent } from './not-found/not-found.component';
 import { MatButtonModule } from '@angular/material/button';
 import { DateAdapter, MatNativeDateModule, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
@@ -27,6 +29,7 @@ import { MatSelectModule } from '@angular/material/select';
     BrowserAnimationsModule,
     FormsModule,
     MatCardModule,
+    HttpClientModule,
     MatButtonModule,
     MatNativeDateModule,
     MatDatepickerModule,

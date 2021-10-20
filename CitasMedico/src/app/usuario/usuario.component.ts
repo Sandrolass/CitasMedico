@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
+import { UsuarioService } from '../services/usuario.service';
 
 @Component({
   selector: 'app-usuario',
@@ -14,14 +16,18 @@ export class UsuarioComponent implements OnInit {
     apellidos: [null, Validators.required]
   });
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private usuariosService: UsuarioService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.limpiarFormulario();
   }
 
-  enviar(){
-
+  enviar(){    
+      this.usuariosService.loginUser(this.formGroup.value).subscribe(data => {
+        console.log("DESDE USUARIOS SERVICE:"); console.log(data)
+        //Logica de lo que se necesite
+      });
+    
     this.limpiarFormulario();
   }
 
