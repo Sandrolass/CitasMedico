@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { CitaService } from './services/cita.service';
 import { CalendarioComponent } from './calendario/calendario.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -23,6 +24,7 @@ import { CalendarioComponent } from './calendario/calendario.component';
     FormsModule,
     MatCardModule,
     DateTimePickerModule,
+    HttpClientModule
   ],
   providers: [
     CitaService
