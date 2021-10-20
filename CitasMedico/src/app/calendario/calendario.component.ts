@@ -15,7 +15,7 @@ export const MY_DATE_FORMATS = {
   },
 };
 
-interface Hour {
+interface hour {
   name: string;
 }
 
@@ -30,7 +30,7 @@ interface Hour {
 export class CalendarioComponent implements OnInit {
   hoursControl = new FormControl('', Validators.required);
   selectFormControl = new FormControl('', Validators.required);
-  hours: Hour[] = [
+  hours: hour[] = [
     {name: '8:00'},
   ];
 
