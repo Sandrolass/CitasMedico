@@ -14,7 +14,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { DateAdapter, MatNativeDateModule, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { DateTimePickerModule } from '@syncfusion/ej2-angular-calendars';
 
 
 @NgModule({
@@ -29,7 +28,6 @@ import { DateTimePickerModule } from '@syncfusion/ej2-angular-calendars';
     BrowserAnimationsModule,
     FormsModule,
     MatCardModule,
-    DateTimePickerModule,
     HttpClientModule,
     MatButtonModule,
     MatNativeDateModule,
