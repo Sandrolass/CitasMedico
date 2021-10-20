@@ -52,7 +52,7 @@ citasRoute.route("/getU/:dni").get((req,res,next)=>{
     });
 });
 
-citasRoute.route("/").post((req,res,next)=>{
+/* citasRoute.route("/").post((req,res,next)=>{
     Cita.find()
-})
+}) */
 
