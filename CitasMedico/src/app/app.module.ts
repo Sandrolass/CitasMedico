@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { DateTimePickerModule } from '@syncfusion/ej2-angular-calendars';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -24,7 +23,6 @@ import { MatButtonModule } from '@angular/material/button';
     BrowserAnimationsModule,
     FormsModule,
     MatCardModule,
-    DateTimePickerModule,
     MatButtonModule
   ],
   providers: [
