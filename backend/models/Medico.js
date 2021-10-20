@@ -13,10 +13,10 @@ let Fecha = new Schema({
 
 
 let Medico = new Schema({
-    nombre:{type:String},
-    apellido:{type:String},
-    dni:{type:String},
-    refM:{type:String},
+    nombre:{type:String,required:true},
+    apellido:{type:String,required:true},
+    dni:{type:String,required:true,unique:true},
+    refM:{type:String,required:true},
     fecha:[Fecha]
 },{collection:"medicos"});
 
