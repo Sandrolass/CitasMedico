@@ -17,6 +17,7 @@ export const MY_DATE_FORMATS = {
 
 interface hour {
   name: string;
+  value: number;
 }
 
 @Component({
@@ -30,11 +31,24 @@ interface hour {
 export class CalendarioComponent implements OnInit {
   hoursControl = new FormControl('', Validators.required);
   selectFormControl = new FormControl('', Validators.required);
-  hours: hour[] = [
-    {name: '8:00'},
-  ];
+  hours: hour[] = [];
 
-  constructor() { }
+  constructor() {
+    let minutos = ["00", "15", "30", "45"];
+    let value = 0;
+    for (let i=8; i<14; i++) {
+      for (let j=0; j<4; j++) {
+
+        this.hours.push({
+          value: value,
+          name: i+":"+minutos[j]
+        })
+        value++;
+      }
+    }
+    this.hours.push({value:24, name:"14:00"})  
+    console.log(this.hours)
+   }
 
   ngOnInit(): void {
   }
