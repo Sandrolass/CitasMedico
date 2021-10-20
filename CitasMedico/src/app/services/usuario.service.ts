@@ -13,7 +13,7 @@ export class UsuarioService {
   constructor(private http: HttpClient) { }
 
   loginUser(credentials: any): Observable<any> {
-    let url = this.urlBase + "usuarios/" + credentials.dni;
+    let url = this.urlBase + "usuarios/getU/" + credentials.dni;
     return this.http.get(url);
   }
 }
