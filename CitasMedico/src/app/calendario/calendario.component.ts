@@ -34,14 +34,14 @@ export class CalendarioComponent implements OnInit {
   hours: hour[] = [];
 
   constructor() {
-    let minutos = ["00", "15", "30", "45"];
+    let minutes = ["00", "15", "30", "45"];
     let value = 0;
-    for (let i=8; i<14; i++) {
-      for (let j=0; j<4; j++) {
+    for (let horas=8; horas<14; horas++) {
+      for (let minutos=0; minutos<4; minutos++) {
 
         this.hours.push({
           value: value,
-          name: i+":"+minutos[j]
+          name: horas+":"+minutes[minutos]
         })
         value++;
       }
