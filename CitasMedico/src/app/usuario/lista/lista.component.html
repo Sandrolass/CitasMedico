@@ -36,8 +36,8 @@
       <th scope="col">#</th>
       <th scope="col">Fecha</th>
       <th scope="col">Referencia Medico</th>
-      <th scope="col">Tipo de dolor</th>
       <th scope="col">Hora</th>
+      <th scope="col">Calificacion</th>
 
     </tr>
   </thead>
@@ -45,8 +45,9 @@
     <tr>
       <th scope="row">{{i}}</th>
       <td>{{citas.fecha.getDate()}}+"/"+{{citas.fecha.getMonth()}}+"/"+{{citas.fecha.getFullYear()}}</td>
-      <td></td>
-      <td>@mdo</td>
+      <td>{{citas.medico}}</td>
+      <td>{{citas.fecha.getHours()}}+":"+{{citas.fecha.getMinutes()}}</td>
+      <td>{{citas.calif}}</td>
     </tr>
   </tbody>
 </table> -->
