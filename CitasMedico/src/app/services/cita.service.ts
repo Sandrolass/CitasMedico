@@ -38,7 +38,7 @@ export class CitaService {
   }
 
   updateCita(citaDetails:Cita){
-    let url = '${this.urlBase}/${citaDetails._id}';
+    let url = this.urlBase + '/'+ citaDetails._id;
     return this.http.put(url, citaDetails);
   }
 
