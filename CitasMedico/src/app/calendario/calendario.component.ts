@@ -47,7 +47,8 @@ export class CalendarioComponent implements OnInit {
     {
 
       this.citasForm = formBuilder.group({
-
+        fecha: this.fechaControl,
+        hoursControl: this.fechaControl
       });
     
     
@@ -89,6 +90,9 @@ export class CalendarioComponent implements OnInit {
   }
 
   pedirCita(){
+
+    console.log(this.citasForm);
+
 
 
   }
