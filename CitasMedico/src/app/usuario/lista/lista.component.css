@@ -1,29 +1,3 @@
-mat-form-field {
-  width: 30%;
-  margin-left: 10px;
-  margin-right: 10px;
-}
-
-mat-card {
-  margin: 50px;
-  background-color: #eeeeee;
-}
-
-.titulo {
-  margin: 0 0 16px -8px;
-}
-
-.tamano{
-  margin-top: 5%;
-  max-width: 70%;
-  margin-left: 15%;
-
-}
-.boton{
-  margin-left: 25px;
-  margin-right: 16px;
-}
-
 .star{
     margin: 0px 0px;
     color: #a9a5a5;
@@ -33,10 +7,10 @@ mat-card {
     transform: scale(1);
   }
 
-.star
-  mat-icon
-    {width: 40px;
-    height: 40px}
+.star mat-icon{
+    width: 40px;
+    height: 40px;
+}
 
 .star-gold
   {color: orange}
@@ -49,4 +23,3 @@ mat-card {
 
 .star-rating-animation .star-hover:hover
   {transform: scale(1.3)}
-

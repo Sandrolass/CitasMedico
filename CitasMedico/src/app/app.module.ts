@@ -15,6 +15,11 @@ import { CalendarioComponent } from './calendario/calendario.component';
 import { HttpClientModule } from '@angular/common/http';
 
 import { NotFoundComponent } from './not-found/not-found.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { ListaComponent } from './usuario/lista/lista.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 
 @NgModule({
@@ -34,7 +39,11 @@ import { NotFoundComponent } from './not-found/not-found.component';
     MatNativeDateModule,
     MatDatepickerModule,
     MatSelectModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDialogModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [
     {
@@ -57,7 +66,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
         },
       },
     },
-    CitaService,
+    CitaService,CalendarioComponent,ListaComponent
   ],
   bootstrap: [AppComponent]
 })
