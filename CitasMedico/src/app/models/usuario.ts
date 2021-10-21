@@ -1,5 +1,5 @@
 export interface Medico {
-    _id: string,
+    _id?: string,
     refM: string,
     nombre: string,
     apellido: string,
