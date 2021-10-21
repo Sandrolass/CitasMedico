@@ -1,3 +1,4 @@
+import { UsuarioCompleto } from './../models/usuario';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MAT_DATE_FORMATS } from '@angular/material/core';
@@ -34,8 +35,7 @@ export class CalendarioComponent implements OnInit {
   selectFormControl = new FormControl('', Validators.required);
   hours: hour[] = [];
 
-  constructor(public dialogRef: MatDialogRef<CalendarioComponent>, @Inject(MAT_DIALOG_DATA) public data:any) { }
-  constructor() {
+  constructor(public dialogRef: MatDialogRef<CalendarioComponent>, @Inject(MAT_DIALOG_DATA) public data:UsuarioCompleto)  {
     let minutes = ["00", "15", "30", "45"];
     let value = 0;
     for (let horas=8; horas<14; horas++) {
