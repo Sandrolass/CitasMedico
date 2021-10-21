@@ -5,7 +5,6 @@ import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   { path: '', loadChildren: () => import('./usuario/usuario.module').then(m => m.UsuarioModule) },
-  { path: 'calendario', component: CalendarioComponent },
   { path: '**', component: NotFoundComponent}
   
 ];

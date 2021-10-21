@@ -17,6 +17,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { ListaComponent } from './usuario/lista/lista.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 
 @NgModule({
@@ -38,7 +41,12 @@ import { MatIconModule } from '@angular/material/icon';
     MatSelectModule,
     ReactiveFormsModule,
     MatDialogModule,
+<<<<<<< HEAD
     MatIconModule
+=======
+    MatFormFieldModule,
+    MatInputModule
+>>>>>>> 2d893e9475f686972339b96f5f20762ef7bd45eb
   ],
   providers: [
     {
@@ -61,7 +69,7 @@ import { MatIconModule } from '@angular/material/icon';
         },
       },
     },
-    CitaService,CalendarioComponent
+    CitaService,CalendarioComponent,ListaComponent
   ],
   bootstrap: [AppComponent]
 })

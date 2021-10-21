@@ -34,8 +34,12 @@ usuarioRoute.route("/:id").get((req,res,next)=>{
 });
 
 usuarioRoute.route("/getU/:dni").get((req,res,next)=>{
+    
     let dni = req.params.dni;
+    console.log(dni);
+    console.log(typeof(dni));
     Usuario.findOne({dni:dni},(err,data)=>{
+        console.log(data);
         if(err){
             return next(err);
         }else{

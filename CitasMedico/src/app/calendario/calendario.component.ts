@@ -32,10 +32,19 @@ interface hour {
 })
 export class CalendarioComponent implements OnInit {
   hoursControl = new FormControl('', Validators.required);
+  fechaControl = new FormControl('', Validators.required);
   selectFormControl = new FormControl('', Validators.required);
   hours: hour[] = [];
 
   constructor(public dialogRef: MatDialogRef<CalendarioComponent>, @Inject(MAT_DIALOG_DATA) public data:UsuarioCompleto)  {
+    
+    this.resetHoras();
+
+    this.filtrarHoras();
+   }
+
+  resetHoras() {
+
     let minutes = ["00", "15", "30", "45"];
     let value = 0;
     for (let horas=8; horas<14; horas++) {
@@ -49,10 +58,32 @@ export class CalendarioComponent implements OnInit {
       }
     }
     this.hours.push({value:24, name:"14:00"})
-    console.log(this.hours)
-   }
+  }
+
+  filtrarHoras(){
+
+    console.log('hola')
+    let fechas = this.data.medico.fecha;
+    
+    console.log(this.data.medico.fecha.length);
+
+    if (fechas.length === 0) {
+      this.resetHoras();
+    } else {
+
+      console.log('filtrar citas')
+    }
+
+
+    
+  }
 
   ngOnInit(): void {
+  }
+  
+
+  close(){
+    this.dialogRef.close();
   }
 
 }
