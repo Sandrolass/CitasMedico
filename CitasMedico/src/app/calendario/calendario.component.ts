@@ -1,8 +1,9 @@
 import { UsuarioCompleto } from './../models/usuario';
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DATE_FORMATS } from '@angular/material/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { CitaService } from '../services/cita.service';
 
 
 export const MY_DATE_FORMATS = {
@@ -31,15 +32,26 @@ interface hour {
   ]
 })
 export class CalendarioComponent implements OnInit {
+  
+  citasForm: FormGroup;
   hoursControl = new FormControl('', Validators.required);
   fechaControl = new FormControl('', Validators.required);
   selectFormControl = new FormControl('', Validators.required);
   hours: hour[] = [];
 
-  constructor(public dialogRef: MatDialogRef<CalendarioComponent>, @Inject(MAT_DIALOG_DATA) public data:UsuarioCompleto)  {
+  constructor( 
+    private formBuilder:FormBuilder,
+    private citaService:CitaService,
+    public dialogRef: MatDialogRef<CalendarioComponent>, @Inject(MAT_DIALOG_DATA) 
+    public data:UsuarioCompleto)  
+    {
+
+      this.citasForm = formBuilder.group({
+
+      });
+    
     
     this.resetHoras();
-
     this.filtrarHoras();
    }
 
@@ -71,11 +83,14 @@ export class CalendarioComponent implements OnInit {
       this.resetHoras();
     } else {
 
-      console.log('filtrar citas')
+
     }
+ 
+  }
+
+  pedirCita(){
 
 
-    
   }
 
   ngOnInit(): void {
