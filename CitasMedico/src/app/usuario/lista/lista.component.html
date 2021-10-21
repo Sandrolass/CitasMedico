@@ -17,8 +17,8 @@
       <td>@mdo</td>
       <td>the Bird</td>
       <td>
-        <div class="star-rating-container star-rating-animation" fxLayout="row" fxLayoutAlign="start center">      
-          <div *ngFor="let star of stars" [ngClass]="[star.class]" (click)="selectStar(star.id)">
+        <div class="star-rating-container star-rating-animation" fxLayout="row" fxLayoutAlign="start center">
+          <div *ngFor="let star of starsArr[0]" [ngClass]="[star.class]" (click)="selectStar(star.id,0)">
             <mat-icon>{{star.icon}}</mat-icon>
           </div>
         </div>
@@ -31,8 +31,8 @@
       <td>@fat</td>
       <td>the Bird</td>
       <td>
-        <div class="star-rating-container star-rating-animation" fxLayout="row" fxLayoutAlign="start center">      
-          <div *ngFor="let star of stars" [ngClass]="[star.class]" (click)="selectStar(star.id)">
+        <div class="star-rating-container star-rating-animation" fxLayout="row" fxLayoutAlign="start center">
+          <div *ngFor="let star of starsArr[1]; let i = index" [ngClass]="[star.class]" (click)="selectStar(star.id,1)">
             <mat-icon>{{star.icon}}</mat-icon>
           </div>
         </div>
@@ -45,14 +45,14 @@
       <td>@twitter</td>
       <td>the Bird</td>
       <td fxLayout="row" fxLayoutAlign="start center">
-        <div class="star-rating-container star-rating-animation">      
-          <div *ngFor="let star of stars" [ngClass]="[star.class]" (click)="selectStar(star.id)">
+        <div class="star-rating-container star-rating-animation">
+          <div *ngFor="let star of starsArr[2]" [ngClass]="[star.class]" (click)="selectStar(star.id,2)">
             <mat-icon>{{star.icon}}</mat-icon>
           </div>
         </div>
       </td>
     </tr>
-    
+
   </tbody>
 </table>
 
