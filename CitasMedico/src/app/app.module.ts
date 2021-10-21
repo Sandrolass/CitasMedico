@@ -17,6 +17,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ListaComponent } from './usuario/lista/lista.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 
 @NgModule({
@@ -37,7 +39,9 @@ import { ListaComponent } from './usuario/lista/lista.component';
     MatDatepickerModule,
     MatSelectModule,
     ReactiveFormsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [
     {
