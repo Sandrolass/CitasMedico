@@ -9,6 +9,6 @@ let Cita = new Schema({
     tipoDolor:{type:String,required:true},
     descripcion:{type:String},
     calif:{type:Number}
-},{collection:"citas"});
+},{collection:"citas"}); 
 
 module.exports = mongoose.model("Cita",Cita);

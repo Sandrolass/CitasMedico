@@ -1,9 +1,12 @@
-import { UsuarioCompleto } from './../models/usuario';
+import { Fecha, Medico, UsuarioCompleto } from './../models/usuario';
+import { Cita } from './../models/cita';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DATE_FORMATS } from '@angular/material/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CitaService } from '../services/cita.service';
+import { MedicoService } from '../services/medico.service';
+
 
 
 export const MY_DATE_FORMATS = {
@@ -42,13 +45,14 @@ export class CalendarioComponent implements OnInit {
   constructor( 
     private formBuilder:FormBuilder,
     private citaService:CitaService,
+    private medicoService: MedicoService,
     public dialogRef: MatDialogRef<CalendarioComponent>, @Inject(MAT_DIALOG_DATA) 
     public data:UsuarioCompleto)  
     {
 
       this.citasForm = formBuilder.group({
         fecha: this.fechaControl,
-        hoursControl: this.fechaControl
+        hoursControl: this.hoursControl
       });
     
     
@@ -75,10 +79,9 @@ export class CalendarioComponent implements OnInit {
 
   filtrarHoras(){
 
-    console.log('hola')
+
     let fechas = this.data.medico.fecha;
     
-    console.log(this.data.medico.fecha.length);
 
     if (fechas.length === 0) {
       this.resetHoras();
@@ -91,10 +94,75 @@ export class CalendarioComponent implements OnInit {
 
   pedirCita(){
 
-    console.log(this.citasForm);
+    
+    //variables de mes dia y año por separado
+    let anio =  this.citasForm.get('fecha')?.value._i.year;
+    let mes = this.citasForm.get('fecha')?.value._i.month;
+    let dia = this.citasForm.get('fecha')?.value._i.date;
+
+    //creación de Date
+    let fecha = new Date(anio +"-"+ mes +"-"+ dia);
+    
+    //Creamos el objeto cita a partir de los datos del formulario y los datos que se reciben en el dialog
+    let cita:Cita = {
+      fecha: fecha,
+      refUsuario: this.data.dni,
+      refM: this.data.medico.refM,
+      tipoDolor: 'fdafsa',
+      descripcion: 'fdafadsfas',
+      calif: null
+    }
+
+    //recibimos las fechas en las que el médico ya tiene horas asignadas para no duplicar las fechas.
+
+    let fechasMedico:Fecha[] = this.data.medico.fecha;
 
 
+    let fechaExistente = fechasMedico.filter((data:any) => data == fecha);
+    
+    let horas = new Array();
 
+    if (fechaExistente.length == 0){
+     
+      for (let i=0; i<23; i++) {
+        if (i == this.citasForm.get('hoursControl')?.value.value)
+            horas.push('1');
+          else {
+            horas.push('0')
+          }
+        
+      }
+
+      let stringHoras = horas.join('');
+      
+
+      fechasMedico.push({
+        dia: dia,
+        mes: mes,
+        agno: anio,
+        horas: stringHoras
+      })
+    }
+
+    
+    let medico:Medico = {
+      _id: this.data.medico._id,
+      refM: this.data.medico.refM,
+      nombre: this.data.medico.nombre,
+      apellido: this.data.medico.apellido,
+      dni: this.data.medico.dni,
+      fecha: fechasMedico
+      
+    }
+
+    
+    console.log(cita);
+    console.log(medico);
+    this.citaService.insertCita(cita).subscribe(data => console.log(data));
+
+    this.medicoService.updateMedico(medico).subscribe(data => console.log(data));
+
+    console.log('probando')
   }
 
   ngOnInit(): void {

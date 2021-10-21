@@ -1,5 +1,5 @@
 mat-form-field {
-    width: 30%;
+    width: 40%;
     margin-left: 10px;
     margin-right: 10px;  
   } 
@@ -9,12 +9,16 @@ mat-form-field {
   }
   
   mat-card-content {
-      display: block;
-      position:relative;
-      text-align: center;
+    display: block;
+    position:relative;
+    text-align: center;
       
   }
   
+  .description {
+    width:83%;
+  }
+
   .tamano{
     display: flex;
     width: 100%;
@@ -23,9 +27,6 @@ mat-form-field {
   
   }
 
-  mat-form-field{
-    width:40%;
-  }
   .boton{
     margin-left: 15px;
     margin-right: 16px;

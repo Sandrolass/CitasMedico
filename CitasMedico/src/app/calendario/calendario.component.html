@@ -24,10 +24,22 @@
             </mat-select>
             <mat-error *ngIf="hoursControl.hasError('required')">Por favor, elija una hora</mat-error>
           </mat-form-field>
-          <button mat-raised-button color='primary' (click)='pedirCita()'>Pedir Cita</button>
+          
+          <mat-form-field appearance="fill">
+            <mat-label>Sintomas...</mat-label>
+            <input matInput placeholder="Ej. Sintomas, molestias..." value="">
+          </mat-form-field>
+          
         </form>
 
-        
+        <form>
+          <mat-form-field class="description" appearance="fill">
+            <mat-label>Haga un pequeño resumen sobre los sintomas.</mat-label>
+            <textarea matInput placeholder="Ej. Me siento..."></textarea>
+          </mat-form-field>
+        </form>
+
+        <button mat-raised-button color='primary' (click)='pedirCita()'>Pedir Cita</button>
       </mat-card-content>
 
       <mat-card-footer>
@@ -37,6 +49,6 @@
 </div>
 
 <div mat-dialog-actions>
-<button mat-button (click)="close()">Cerrar</button>
+<button mat-raised-button color="primary" (click)="close()">Cerrar</button>
 </div>
 
