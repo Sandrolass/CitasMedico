@@ -62,6 +62,7 @@ export class CalendarioComponent implements OnInit {
 
   filtrarHoras(){
 
+    console.log('hola')
     let fechas = this.data.medico.fecha;
     
     console.log(this.data.medico.fecha.length);
@@ -70,7 +71,7 @@ export class CalendarioComponent implements OnInit {
       this.resetHoras();
     } else {
 
-      
+      console.log('filtrar citas')
     }
 
 
