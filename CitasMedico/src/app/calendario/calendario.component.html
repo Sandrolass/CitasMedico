@@ -24,7 +24,10 @@
             </mat-select>
             <mat-error *ngIf="hoursControl.hasError('required')">Por favor, elija una hora</mat-error>
           </mat-form-field>
+          <button mat-raised-button color='primary' (click)='pedirCita()'>Pedir Cita</button>
         </form>
+
+        
       </mat-card-content>
 
       <mat-card-footer>
