@@ -41,12 +41,9 @@ import { MatInputModule } from '@angular/material/input';
     MatSelectModule,
     ReactiveFormsModule,
     MatDialogModule,
-<<<<<<< HEAD
-    MatIconModule
-=======
+    MatIconModule,
     MatFormFieldModule,
     MatInputModule
->>>>>>> 2d893e9475f686972339b96f5f20762ef7bd45eb
   ],
   providers: [
     {
