@@ -44,8 +44,8 @@
       <td>the Bird</td>
       <td>@twitter</td>
       <td>the Bird</td>
-      <td fxLayout="row" fxLayoutAlign="start center">
-        <div class="star-rating-container star-rating-animation">      
+      <td>
+        <div class="star-rating-container star-rating-animation" fxLayout="row" fxLayoutAlign="start center">      
           <div *ngFor="let star of stars" [ngClass]="[star.class]" (click)="selectStar(star.id)">
             <mat-icon>{{star.icon}}</mat-icon>
           </div>
