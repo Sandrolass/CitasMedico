@@ -16,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { NotFoundComponent } from './not-found/not-found.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatDatepickerModule,
     MatSelectModule,
     ReactiveFormsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatIconModule
   ],
   providers: [
     {
