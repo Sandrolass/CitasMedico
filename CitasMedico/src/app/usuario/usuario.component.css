@@ -9,6 +9,10 @@ mat-card {
   background-color: #eeeeee;
 }
 
+.titulo {
+  margin: 0 0 16px -8px;
+}
+
 .tamano{
   margin-top: 5%;
   max-width: 70%;
@@ -16,7 +20,7 @@ mat-card {
 
 }
 .boton{
-  margin-left: 15px;
+  margin-left: 25px;
   margin-right: 16px;
 }
 
