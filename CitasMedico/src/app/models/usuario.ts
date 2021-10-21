@@ -4,7 +4,15 @@ export interface Medico {
     nombre: string,
     apellido: string,
     dni: string,
-    fecha: Date
+    fecha: Fecha[]
+}
+
+export interface Fecha {
+
+    dia: number,
+    mes: number,
+    agno: number,
+    horas: string
 }
 
 export interface UsuarioBasico {
