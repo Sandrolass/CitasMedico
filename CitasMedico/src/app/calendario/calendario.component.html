@@ -7,7 +7,8 @@
         </mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        
+        <form [formGroup] = citasForm novalidate >
+          
         <mat-form-field  appearance="fill">
           <input matInput [matDatepicker]="picker" [formControl]="fechaControl" placeholder="Elige una fecha">
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -23,9 +24,8 @@
             </mat-select>
             <mat-error *ngIf="hoursControl.hasError('required')">Por favor, elija una hora</mat-error>
           </mat-form-field>
+        </form>
       </mat-card-content>
-
-      
 
       <mat-card-footer>
       </mat-card-footer>
@@ -34,6 +34,6 @@
 </div>
 
 <div mat-dialog-actions>
-<button mat-button (click)="close()">cerrar</button>
+<button mat-button (click)="close()">Cerrar</button>
 </div>
 
