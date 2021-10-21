@@ -145,7 +145,7 @@ export class ListaComponent implements OnInit {
     );
   }
 
-   selectStar(estrellaClick: any,i:number): void {
+   selectStar(estrellaClick: number,i:number): void {
     // prevent multiple selection
 
       this.starsArr[i].filter((star:any) => {
@@ -154,10 +154,12 @@ export class ListaComponent implements OnInit {
         else
           star.class = 'star-gray star';
 
+          return star
+      });
 
 
         this.listaCitas[i].calif = estrellaClick;
-        this.citaS.updateCita(this.listaCiat[index]._id,this.listaCita[index]).subscribe(
+        this.citaS.updateCita(this.listaCitas[i]).subscribe(
           data =>{
             console.log(data);
 
@@ -166,12 +168,12 @@ export class ListaComponent implements OnInit {
             console.log(err);
           }
         );
-        return star;
-      });
+
+
     }
 
-    this.selectedRating = value;
+
   }
 
 
-}
+

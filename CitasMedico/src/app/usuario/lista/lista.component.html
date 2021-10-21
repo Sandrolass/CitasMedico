@@ -70,12 +70,14 @@
   <tbody *ngFor="let citas of listaCitas; let i = index">
     <tr>
       <th scope="row">{{i}}</th>
-      <td>{{citas.fecha.getDate()}}+"/"+{{citas.fecha.getMonth()}}+"/"+{{citas.fecha.getFullYear()}}</td>
-      <td>{{citas.medico}}</td>
-      <td>{{citas.fecha.getHours()}}+":"+{{citas.fecha.getMinutes()}}</td>
+      <!-- <td>{{citas.fecha.getDate()}}+"/"+{{citas.fecha.getMonth()}}+"/"+{{citas.fecha.getFullYear()}}</td> -->
+      <td>{{(citas.fecha)}}</td>
+      <td>{{citas.refM}}</td>
+      <!-- <td>{{citas.fecha.getHours()}}+":"+{{citas.fecha.getMinutes()}}</td> -->
+      <td></td>
       <td fxLayout="row" fxLayoutAlign ="start center">
         <div class="star-rating-container star-rating animation">
-          <div *ngFor ="let star of starsArr[i]" [ngClass]="[star.class]" >
+          <div *ngFor ="let star of starsArr[i]" [ngClass]="[star.class]" (click)="selectStar(star.id,i)" >
             <mat-icon>{{star.icon}}</mat-icon>
           </div>
         </div>

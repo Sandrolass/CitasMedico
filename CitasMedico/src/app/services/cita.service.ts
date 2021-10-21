@@ -25,7 +25,7 @@ export class CitaService {
 
   insertCita(cita: Cita): Observable<any> {
 
- 
+
     let url = this.urlBase;
     console.log(url);
     return this.http.post(url, cita, { responseType: 'json' })
@@ -35,6 +35,11 @@ export class CitaService {
           return throwError(e);
         })
       );
+  }
+
+  updateCita(citaDetails:Cita){
+    let url = '${this.urlBase}/${citaDetails._id}';
+    return this.http.put(url, citaDetails);
   }
 
   deleteCita(id: string): Observable<any> {
