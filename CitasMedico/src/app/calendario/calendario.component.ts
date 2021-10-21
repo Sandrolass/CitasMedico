@@ -102,7 +102,7 @@ export class CalendarioComponent implements OnInit {
     //creación de Date
     let fecha = new Date(anio +"-"+ mes +"-"+ dia);
     
-
+    //Creamos el objeto cita a partir de los datos del formulario y los datos que se reciben en el dialog
     let cita:Cita = {
       fecha: fecha,
       refUsuario: this.data.dni,
@@ -112,8 +112,13 @@ export class CalendarioComponent implements OnInit {
       calif: null
     }
 
+    //recibimos las fechas en las que el médico ya tiene horas asignadas para no duplicar las fechas.
+
     let fechasMedico:Fecha[] = this.data.medico.fecha;
+
+
     let fechaExistente = fechasMedico.filter((data:any) => data == fecha);
+    
     let horas = new Array();
 
     if (fechaExistente.length == 0){
