@@ -1,3 +1,4 @@
+import { UsuarioCompleto } from './../../models/usuario';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Component, Inject, OnInit } from '@angular/core';
 import { CitaService } from 'src/app/services/cita.service';
@@ -10,7 +11,8 @@ import { Cita } from 'src/app/models/cita';
 })
 export class ListaComponent implements OnInit {
   listaCitas:Cita[] = [];
-  starsArr:any[] = [[ {
+  starsArr:any[] = [];
+  /* starsArr:any[] = [[ {
     id: 1,
     icon: 'star',
     class: 'star-gray star-hover star'
@@ -85,7 +87,7 @@ export class ListaComponent implements OnInit {
   id: 5,
   icon: 'star',
   class: 'star-gray star-hover star'
-}]];
+}]]; */
   selectedRating = 0;
   stars = [
     {
@@ -119,54 +121,51 @@ export class ListaComponent implements OnInit {
   constructor(MatDialogRef:MatDialogRef<ListaComponent>,@Inject(MAT_DIALOG_DATA) public data:String,private citaS: CitaService) { }
 
   ngOnInit(): void {
-    /* this.citaS.getCitasDni(this.data).subscribe(
+     this.citaS.getCitasDni(this.data).subscribe(
       data => {
         this.listaCitas = data;
         for(let i =0;i<this.listaCitas.length;i++){
-          this.starsArr[i]= [ {
-            id: 1,
-            icon: 'star',
-            class: 'star-gray star-hover star'
-          },
-          {
-            id: 2,
-            icon: 'star',
-            class: 'star-gray star-hover star'
-          },
-          {
-            id: 3,
-            icon: 'star',
-            class: 'star-gray star-hover star'
-          },
-          {
-            id: 4,
-            icon: 'star',
-            class: 'star-gray star-hover star'
-          },
-          {
-            id: 5,
-            icon: 'star',
-            class: 'star-gray star-hover star'
-          }]
+          let numEstrellas = 0;
+          let estrellas = this.stars;
+          let numCalif = this.listaCitas[i].calif;
+          if(numCalif!=null){
+            numEstrellas = numCalif;
+            estrellas.filter( st =>{
+              if(st.id<=numEstrellas)
+                st.class = 'star-gold star-hover star';
+            })
+          }
+          this.starsArr[i] = estrellas;
         }
         console.log(data);
       },
       err=>{
         console.log(err);
       }
-    ); */
+    );
   }
 
-  selectStar(value: any,i:number): void {
+   selectStar(estrellaClick: any,i:number): void {
     // prevent multiple selection
-    if (this.selectedRating < 6) {
-      this.starsArr[i].filter((star:any) => {
-        if (star.id <= value) {
-          star.class = 'star-gold star';
-        } else {
-          star.class = 'star-gray star';
-        }
 
+      this.starsArr[i].filter((star:any) => {
+        if (star.id <= estrellaClick)
+          star.class = 'star-gold star';
+        else
+          star.class = 'star-gray star';
+
+
+
+        this.listaCitas[i].calif = estrellaClick;
+        this.citaS.updateCita(this.listaCiat[index]._id,this.listaCita[index]).subscribe(
+          data =>{
+            console.log(data);
+
+          },
+          err =>{
+            console.log(err);
+          }
+        );
         return star;
       });
     }

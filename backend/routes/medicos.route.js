@@ -41,6 +41,7 @@ medicoRoute.route("/").post((req,res,next)=>{
 });
 
 medicoRoute.route("/:id").put((req,res,next)=>{
+    console.log("actualizando medico")
     let id = req.params.id;
     let medicoUp = req.body;
 

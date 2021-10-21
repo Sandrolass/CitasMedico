@@ -1,4 +1,4 @@
-<table class="table" >
+<!-- <table class="table" >
   <thead>
     <tr>
       <th scope="col">#</th>
@@ -54,9 +54,9 @@
     </tr>
 
   </tbody>
-</table>
+</table> -->
 
-<!-- <table class="table" >
+<table class="table" >
   <thead>
     <tr>
       <th scope="col">#</th>
@@ -73,8 +73,14 @@
       <td>{{citas.fecha.getDate()}}+"/"+{{citas.fecha.getMonth()}}+"/"+{{citas.fecha.getFullYear()}}</td>
       <td>{{citas.medico}}</td>
       <td>{{citas.fecha.getHours()}}+":"+{{citas.fecha.getMinutes()}}</td>
-      <td>{{citas.calif}}</td>
+      <td fxLayout="row" fxLayoutAlign ="start center">
+        <div class="star-rating-container star-rating animation">
+          <div *ngFor ="let star of starsArr[i]" [ngClass]="[star.class]" >
+            <mat-icon>{{star.icon}}</mat-icon>
+          </div>
+        </div>
+        {{citas.calif}}</td>
     </tr>
   </tbody>
-</table> -->
+</table>
 

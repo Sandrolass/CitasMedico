@@ -62,7 +62,7 @@ export class UsuarioComponent implements OnInit {
          const dialogRef = this.dialog.open(CalendarioComponent,{width:"100%",maxWidth:'65%',height:'auto',data:data});
         dialogRef.afterClosed().subscribe(res => {
           console.log(res);
-          const dialogRef2 = this.dialog.open(ListaComponent,{width:'80%',maxWidth:'65%',height:'auto',data:true});
+          const dialogRef2 = this.dialog.open(ListaComponent,{width:'80%',maxWidth:'65%',height:'auto',data:data.dni});
           dialogRef2.afterClosed().subscribe(res2 =>{
             console.log(res2);
           },

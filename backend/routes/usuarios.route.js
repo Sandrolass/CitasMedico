@@ -36,8 +36,9 @@ usuarioRoute.route("/:id").get((req,res,next)=>{
 usuarioRoute.route("/getU/:dni").get((req,res,next)=>{
     
     let dni = req.params.dni;
-
+    
     Usuario.findOne({dni:dni},(err,data)=>{
+        
         if(err){
             return next(err);
         }else{
