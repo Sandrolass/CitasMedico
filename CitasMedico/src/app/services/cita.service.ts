@@ -18,6 +18,10 @@ export class CitaService {
     let url = this.urlBase;
     return this.http.get(url);
   }
+  getCitasDni(dni:String):Observable<any>{
+    let url = this.urlBase + "/getU/" + dni;
+    return this.http.get(url);
+  }
 
   insertCita(cita: Cita): Observable<any> {
     let url = this.urlBase;

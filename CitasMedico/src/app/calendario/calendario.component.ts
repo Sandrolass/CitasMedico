@@ -80,4 +80,8 @@ export class CalendarioComponent implements OnInit {
   }
   
 
+  close(){
+    this.dialogRef.close();
+  }
+
 }
