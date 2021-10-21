@@ -10,7 +10,7 @@ import { Medico } from '../models/usuario';
 })
 export class MedicoService {
   
-  urlBase = environment.urlBase + "medico";
+  urlBase = environment.urlBase + "medicos";
 
   constructor(private http: HttpClient) { }
 
@@ -36,7 +36,8 @@ findMedicoById(id: any): Observable<any> {
 }
 
 updateMedico(medico: Medico): Observable<any> {
-  let url = this.urlBase+medico._id;
+  let url = this.urlBase+'/'+medico._id;
+  console.log(url);
   delete medico._id;
   return this.http.put(url, medico);
 }

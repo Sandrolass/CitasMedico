@@ -5,6 +5,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { MAT_DATE_FORMATS } from '@angular/material/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CitaService } from '../services/cita.service';
+import { MedicoService } from '../services/medico.service';
 
 
 
@@ -44,7 +45,7 @@ export class CalendarioComponent implements OnInit {
   constructor( 
     private formBuilder:FormBuilder,
     private citaService:CitaService,
-    //private medicoService: Me
+    private medicoService: MedicoService,
     public dialogRef: MatDialogRef<CalendarioComponent>, @Inject(MAT_DIALOG_DATA) 
     public data:UsuarioCompleto)  
     {
@@ -106,9 +107,9 @@ export class CalendarioComponent implements OnInit {
     let cita:Cita = {
       fecha: fecha,
       refUsuario: this.data.dni,
-      medico: this.data.medico.nombre,
-      tipoDolor: '',
-      descripcion: '',
+      refM: this.data.medico.refM,
+      tipoDolor: 'fdafsa',
+      descripcion: 'fdafadsfas',
       calif: null
     }
 
@@ -155,8 +156,13 @@ export class CalendarioComponent implements OnInit {
     }
 
     
-    this.citaService.insertCita(cita);
+    console.log(cita);
+    console.log(medico);
+    this.citaService.insertCita(cita).subscribe(data => console.log(data));
 
+    this.medicoService.updateMedico(medico).subscribe(data => console.log(data));
+
+    console.log('probando')
   }
 
   ngOnInit(): void {

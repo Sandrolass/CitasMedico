@@ -24,7 +24,10 @@ export class CitaService {
   }
 
   insertCita(cita: Cita): Observable<any> {
+
+ 
     let url = this.urlBase;
+    console.log(url);
     return this.http.post(url, cita, { responseType: 'json' })
       .pipe(
         catchError(e => {
