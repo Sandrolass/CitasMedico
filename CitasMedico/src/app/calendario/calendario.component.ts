@@ -32,6 +32,7 @@ interface hour {
 })
 export class CalendarioComponent implements OnInit {
   hoursControl = new FormControl('', Validators.required);
+  fechaControl = new FormControl('', Validators.required);
   selectFormControl = new FormControl('', Validators.required);
   hours: hour[] = [];
 
