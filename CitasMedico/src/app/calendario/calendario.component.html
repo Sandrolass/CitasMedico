@@ -6,9 +6,12 @@
         </mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+        
+        <mat-form-field  appearance="fill">
+          <input matInput [matDatepicker]="picker" placeholder="Elige la fecha de tu cita">
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker ></mat-datepicker>
+        </mat-form-field>
 
           <mat-form-field appearance="fill">
             <mat-label>Elija una hora</mat-label>

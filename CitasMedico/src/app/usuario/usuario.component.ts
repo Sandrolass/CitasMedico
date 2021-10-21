@@ -28,7 +28,7 @@ export class UsuarioComponent implements OnInit {
       this.usuariosService.loginUser(this.formGroup.value).subscribe(data => {
         console.log("DESDE USUARIOS SERVICE:"); console.log(data)
         //Logica de lo que se necesite
-         const dialogRef = this.dialog.open(CalendarioComponent,{width:"100%$",maxWidth:'65%',height:'auto',data:data});
+         const dialogRef = this.dialog.open(CalendarioComponent,{width:"100%",maxWidth:'65%',height:'auto',data:data});
         dialogRef.afterClosed().subscribe(res => {
           console.log(res);
         })
