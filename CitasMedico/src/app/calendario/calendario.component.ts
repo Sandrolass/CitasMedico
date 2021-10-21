@@ -1,9 +1,11 @@
-import { UsuarioCompleto } from './../models/usuario';
+import { Fecha, Medico, UsuarioCompleto } from './../models/usuario';
+import { Cita } from './../models/cita';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DATE_FORMATS } from '@angular/material/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CitaService } from '../services/cita.service';
+
 
 
 export const MY_DATE_FORMATS = {
@@ -42,13 +44,14 @@ export class CalendarioComponent implements OnInit {
   constructor( 
     private formBuilder:FormBuilder,
     private citaService:CitaService,
+    //private medicoService: Me
     public dialogRef: MatDialogRef<CalendarioComponent>, @Inject(MAT_DIALOG_DATA) 
     public data:UsuarioCompleto)  
     {
 
       this.citasForm = formBuilder.group({
         fecha: this.fechaControl,
-        hoursControl: this.fechaControl
+        hoursControl: this.hoursControl
       });
     
     
@@ -75,10 +78,9 @@ export class CalendarioComponent implements OnInit {
 
   filtrarHoras(){
 
-    console.log('hola')
+
     let fechas = this.data.medico.fecha;
     
-    console.log(this.data.medico.fecha.length);
 
     if (fechas.length === 0) {
       this.resetHoras();
@@ -91,9 +93,64 @@ export class CalendarioComponent implements OnInit {
 
   pedirCita(){
 
-    console.log(this.citasForm);
+    
+    //variables de mes dia y año por separado
+    let anio =  this.citasForm.get('fecha')?.value._i.year;
+    let mes = this.citasForm.get('fecha')?.value._i.month;
+    let dia = this.citasForm.get('fecha')?.value._i.date;
 
+    //creación de Date
+    let fecha = new Date(anio +"-"+ mes +"-"+ dia);
+    
 
+    let cita:Cita = {
+      fecha: fecha,
+      refUsuario: this.data.dni,
+      medico: this.data.medico.nombre,
+      tipoDolor: '',
+      descripcion: '',
+      calif: null
+    }
+
+    let fechasMedico:Fecha[] = this.data.medico.fecha;
+    let fechaExistente = fechasMedico.filter((data:any) => data == fecha);
+    let horas = new Array();
+
+    if (fechaExistente.length == 0){
+     
+      for (let i=0; i<23; i++) {
+        if (i == this.citasForm.get('hoursControl')?.value.value)
+            horas.push('1');
+          else {
+            horas.push('0')
+          }
+        
+      }
+
+      let stringHoras = horas.join('');
+      
+
+      fechasMedico.push({
+        dia: dia,
+        mes: mes,
+        agno: anio,
+        horas: stringHoras
+      })
+    }
+
+    
+    let medico:Medico = {
+      _id: this.data.medico._id,
+      refM: this.data.medico.refM,
+      nombre: this.data.medico.nombre,
+      apellido: this.data.medico.apellido,
+      dni: this.data.medico.dni,
+      fecha: fechasMedico
+      
+    }
+
+    
+    this.citaService.insertCita(cita);
 
   }
 
