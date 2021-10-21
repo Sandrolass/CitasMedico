@@ -7,7 +7,8 @@ let Cita = new Schema({
     refUsuario:{type:String,required:true},
     refM:{type:String,required:true},
     tipoDolor:{type:String,required:true},
-    descripcion:{type:String}
+    descripcion:{type:String},
+    calif:{type:Number}
 },{collection:"citas"});
 
 module.exports = mongoose.model("Cita",Cita);
