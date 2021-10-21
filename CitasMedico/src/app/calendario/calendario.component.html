@@ -27,15 +27,15 @@
           
           <mat-form-field appearance="fill">
             <mat-label>Sintomas...</mat-label>
-            <input matInput placeholder="Ej. Sintomas, molestias..." value="">
+            <input matInput placeholder="Ej. Sintomas, molestias..." [formControl]="tipoDolor">
           </mat-form-field>
           
         </form>
 
         <form>
-          <mat-form-field class="description" appearance="fill">
+          <mat-form-field class="description" appearance="fill" >
             <mat-label>Haga un pequeño resumen sobre los sintomas.</mat-label>
-            <textarea matInput placeholder="Ej. Me siento..."></textarea>
+            <textarea matInput placeholder="Ej. Me siento..." [formControl]="descripcion"></textarea>
           </mat-form-field>
         </form>
 
