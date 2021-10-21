@@ -1,13 +1,13 @@
 mat-form-field {
   width: 30%;
   margin-left: 10px;
-  margin-right: 10px;  
-} 
+  margin-right: 10px;
+}
 
 mat-card {
   margin: 50px;
   background-color: #eeeeee;
-} 
+}
 
 .tamano{
   margin-top: 5%;
@@ -46,4 +46,3 @@ mat-card {
 .star-rating-animation .star-hover:hover
   {transform: scale(1.3)}
 
-  
