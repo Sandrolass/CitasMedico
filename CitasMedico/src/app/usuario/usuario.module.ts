@@ -14,11 +14,15 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
+import { ListaComponent } from './lista/lista.component';
+
 
 
 @NgModule({
   declarations: [
-    UsuarioComponent
+    UsuarioComponent,
+    ListaComponent,
+
   ],
   imports: [
     CommonModule,
@@ -31,7 +35,7 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule, 
+    MatSortModule,
     MatIconModule,
     HttpClientModule
   ]

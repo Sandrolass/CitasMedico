@@ -16,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { NotFoundComponent } from './not-found/not-found.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ListaComponent } from './usuario/lista/lista.component';
 
 
 @NgModule({
@@ -59,7 +60,7 @@ import { MatDialogModule } from '@angular/material/dialog';
         },
       },
     },
-    CitaService,CalendarioComponent
+    CitaService,CalendarioComponent,ListaComponent
   ],
   bootstrap: [AppComponent]
 })

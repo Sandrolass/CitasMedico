@@ -15,9 +15,9 @@ export interface UsuarioBasico {
 }
 
 export interface UsuarioCompleto {
-    _id: string, 
-    nombre: string, 
-    apellidos: string, 
-    dni: string, 
+    _id: string,
+    nombre: string,
+    apellidos: string,
+    dni: string,
     medico: Medico
 }
