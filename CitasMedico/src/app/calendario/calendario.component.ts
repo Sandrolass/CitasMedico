@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MAT_DATE_FORMATS } from '@angular/material/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 
 export const MY_DATE_FORMATS = {
@@ -33,6 +34,7 @@ export class CalendarioComponent implements OnInit {
   selectFormControl = new FormControl('', Validators.required);
   hours: hour[] = [];
 
+  constructor(public dialogRef: MatDialogRef<CalendarioComponent>, @Inject(MAT_DIALOG_DATA) public data:any) { }
   constructor() {
     let minutes = ["00", "15", "30", "45"];
     let value = 0;
@@ -46,7 +48,7 @@ export class CalendarioComponent implements OnInit {
         value++;
       }
     }
-    this.hours.push({value:24, name:"14:00"})  
+    this.hours.push({value:24, name:"14:00"})
     console.log(this.hours)
    }
 
