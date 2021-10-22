@@ -5,15 +5,15 @@
         <mat-card-title>
           <h1>Eliga una fecha</h1>
         </mat-card-title>
+        <h2><div *ngIf="fechaControl.value">Fecha seleccionada</div></h2>
       </mat-card-header>
       <mat-card-content>
         <form [formGroup] = citasForm novalidate >
           
-        <mat-form-field  appearance="fill">
-          <input matInput [matDatepicker]="picker" [formControl]="fechaControl" placeholder="Elige una fecha">
+        <mat-form-field  appearance="fill" >
+          <input matInput [matDatepicker]="picker" [formControl]="fechaControl" placeholder="Elige una fecha" (dateChange) = 'filtrarHoras()' >
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker (click) = 'filtrarHoras()'></mat-datepicker>
-          <div *ngIf="fechaControl.value">Fecha seleccionada</div>
+          <mat-datepicker #picker ></mat-datepicker>
         </mat-form-field>
 
           <mat-form-field appearance="fill">
@@ -25,7 +25,7 @@
             <mat-error *ngIf="hoursControl.hasError('required')">Por favor, elija una hora</mat-error>
           </mat-form-field>
           
-          <mat-form-field appearance="fill">
+          <mat-form-field class="symptom" appearance="fill">
             <mat-label>Sintomas...</mat-label>
             <input matInput placeholder="Ej. Sintomas, molestias..." [formControl]="tipoDolor">
           </mat-form-field>
@@ -35,11 +35,11 @@
         <form>
           <mat-form-field class="description" appearance="fill" >
             <mat-label>Haga un pequeño resumen sobre los sintomas.</mat-label>
-            <textarea matInput placeholder="Ej. Me siento..." [formControl]="descripcion"></textarea>
+            <textarea matInput placeholder="Ej. Me siento..." [formControl]="descripcion" rows="6"></textarea>
           </mat-form-field>
         </form>
 
-        <button mat-raised-button color='primary' (click)='pedirCita()'>Pedir Cita</button>
+        <button mat-raised-button color='primary' [disabled]="!fechaControl.value" (click)='pedirCita()'>Pedir Cita</button>
       </mat-card-content>
 
       <mat-card-footer>
