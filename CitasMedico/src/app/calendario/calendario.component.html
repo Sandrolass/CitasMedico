@@ -39,7 +39,7 @@
           </mat-form-field>
         </form>
 
-        <button mat-raised-button color='primary' (click)='pedirCita()'>Pedir Cita</button>
+        <button mat-raised-button color='primary' [disabled]="!fechaControl.value" (click)='pedirCita()'>Pedir Cita</button>
       </mat-card-content>
 
       <mat-card-footer>
