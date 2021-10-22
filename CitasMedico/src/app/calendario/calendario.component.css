@@ -3,7 +3,17 @@ mat-form-field {
     margin-left: 10px;
     margin-right: 10px;  
   }
+
+  .mat-card-header {
+    display: inline-flex;
+    align-items: baseline;
+  }
   
+  .mat-card-header>h2 {
+    float: right;
+    margin-left: 300px;
+  }
+
   .symptom {
     width: 83% !important;
   }
