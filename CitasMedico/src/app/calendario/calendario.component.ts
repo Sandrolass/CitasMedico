@@ -37,6 +37,7 @@ interface hour {
 export class CalendarioComponent implements OnInit {
   
   citasForm: FormGroup;
+  disabledHours: boolean[];
   hoursControl = new FormControl('', Validators.required);
   fechaControl = new FormControl('', Validators.required);
   tipoDolor = new FormControl('', Validators.required);
@@ -60,13 +61,25 @@ export class CalendarioComponent implements OnInit {
 
       });
     
-    
+    this.disabledHours = new Array();
+
+    this.resetFlagDisabledHours();
+
     this.resetHoras();
     this.filtrarHoras();
    }
 
+  resetFlagDisabledHours(){
+
+    for (let i=0; i<23; i++){
+      this.disabledHours[i] = false;
+    }
+
+  }
   resetHoras() {
 
+
+    this.hours = new Array();
     let minutes = ["00", "15", "30", "45"];
     let value = 0;
     for (let horas=8; horas<14; horas++) {
@@ -77,25 +90,52 @@ export class CalendarioComponent implements OnInit {
           name: horas+":"+minutes[minutos]
         })
         value++;
+        
       }
     }
     this.hours.push({value:24, name:"14:00"})
+
   }
 
   filtrarHoras(){
+    
+    if (this.citasForm.get('fecha')?.value) {
+      let anio =  this.citasForm.get('fecha')?.value._i.year;
+      let mes = this.citasForm.get('fecha')?.value._i.month;
+      let dia = this.citasForm.get('fecha')?.value._i.date;
+      let fechaSeleccionada = this.data.medico.fecha.filter((data:any) => data.dia == dia && data.mes == mes && data.agno == anio);
 
+      if(fechaSeleccionada.length > 0){
+        let horasFechaSeleccionada = fechaSeleccionada[0].horas.split('');
 
-    let fechas = this.data.medico.fecha;
+        for (let i=0; i<23; i++){
+
+          if (horasFechaSeleccionada[i] == '0'){
+            this.disabledHours[i] = true;
+
+          } else {
+            this.disabledHours[i]= false;
+          }
+          
+        }
+      } else {
+
+        for (let i=0; i<23; i++){
+            
+            this.disabledHours[i]= true;
+            console.log(this.disabledHours[i])
+        }
+      }
+      
+      
+      this.resetHoras();
     
 
-    if (fechas.length === 0) {
-      this.resetHoras();
-    } else {
-
-
     }
- 
+    
+    
   }
+
 
   pedirCita(){
 
@@ -127,7 +167,6 @@ export class CalendarioComponent implements OnInit {
     
     let horas = new Array();
 
-    console.log(fechaExistente);
     if (fechaExistente.length == 0){
      
       for (let i=0; i<23; i++) {
@@ -158,8 +197,6 @@ export class CalendarioComponent implements OnInit {
 
           let posicionCita:number = parseInt((this.citasForm.get('hoursControl')?.value.value))
           
-          console.log(posicionCita);
-          console.log('valor array horas', arrayHoras);
           arrayHoras[posicionCita] = 1;
           
           data.horas = arrayHoras.join('');
