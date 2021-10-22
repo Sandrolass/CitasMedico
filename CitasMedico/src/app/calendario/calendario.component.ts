@@ -6,6 +6,8 @@ import { MAT_DATE_FORMATS } from '@angular/material/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CitaService } from '../services/cita.service';
 import { MedicoService } from '../services/medico.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { NotificacionService } from '../services/notificacion.service';
 
 
 
@@ -49,7 +51,8 @@ export class CalendarioComponent implements OnInit {
     private citaService:CitaService,
     private medicoService: MedicoService,
     public dialogRef: MatDialogRef<CalendarioComponent>, @Inject(MAT_DIALOG_DATA)
-    public data:UsuarioCompleto)
+    public data:UsuarioCompleto,
+    private notificacion: NotificacionService)
     {
 
       this.citasForm = formBuilder.group({
@@ -201,7 +204,11 @@ export class CalendarioComponent implements OnInit {
 
     this.citaService.insertCita(cita).subscribe(data => console.log(data));
 
-    this.medicoService.updateMedico(medico).subscribe(data => {console.log(data);this.close()});
+    this.medicoService.updateMedico(medico).subscribe(data => {
+      console.log(data);
+      this.close();
+      this.notificacion.openNotification('Cita reservada correctamente');
+    });
 
 
   }
