@@ -9,10 +9,10 @@
       <mat-card-content>
         <form [formGroup] = citasForm novalidate >
           
-        <mat-form-field  appearance="fill">
-          <input matInput [matDatepicker]="picker" [formControl]="fechaControl" placeholder="Elige una fecha">
+        <mat-form-field  appearance="fill" >
+          <input matInput [matDatepicker]="picker" [formControl]="fechaControl" placeholder="Elige una fecha" (dateChange) = 'filtrarHoras()' >
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker (click) = 'filtrarHoras()'></mat-datepicker>
+          <mat-datepicker #picker ></mat-datepicker>
           <div *ngIf="fechaControl.value">Fecha seleccionada</div>
         </mat-form-field>
 
