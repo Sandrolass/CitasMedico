@@ -12,15 +12,16 @@ import { Cita } from 'src/app/models/cita';
 export class ListaComponent implements OnInit {
   listaCitas:Cita[] = [];
   starsArr:any[] = [];
-  
-  
-  
+
+
+
 
   constructor(public dialogRef:MatDialogRef<ListaComponent>,@Inject(MAT_DIALOG_DATA) public data:String,private citaS: CitaService) { }
 
   ngOnInit(): void {
      this.citaS.getCitasDni(this.data).subscribe(
       data => {
+
         this.ordenarPorFechas(data);
         this.listaCitas = data;
         for(let i =0;i<this.listaCitas.length;i++){
@@ -45,8 +46,8 @@ export class ListaComponent implements OnInit {
   }
 
    selectStar(estrellaClick: number,i:number): void {
-    
-       this.starsArr[i].map( (s:any) =>{
+      if(this.listaCitas[i].fecha.getTime()<=(new Date()).getTime()){
+        this.starsArr[i].map( (s:any) =>{
           if(s.id<=estrellaClick){
             s.class = 'star-gold star-hover star';
           }else{
@@ -62,7 +63,9 @@ export class ListaComponent implements OnInit {
           err =>{
             console.log(err);
           }
-        ); 
+        );
+      }
+
 
 
     }
@@ -94,7 +97,7 @@ export class ListaComponent implements OnInit {
           icon: 'star',
           class: 'star-gray star-hover star'
         }
-    
+
       ];
       return estrellas;
     }
@@ -102,7 +105,7 @@ export class ListaComponent implements OnInit {
       citas.map(i => i.fecha = new Date(i.fecha));
       //algoritmo de insertion sort
         for(let i =1 ; i<citas.length;i++){
-            
+
             for(let j = i ; j>0;j--){
                 if(citas[j].fecha.getTime()<citas[j-1].fecha.getTime()){
                     console.log("swap");
@@ -112,8 +115,8 @@ export class ListaComponent implements OnInit {
                 }
             }
         }
-        
-    
+
+
     }
 
     close(){
