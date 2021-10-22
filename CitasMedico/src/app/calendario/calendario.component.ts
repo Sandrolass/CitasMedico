@@ -107,7 +107,7 @@ export class CalendarioComponent implements OnInit {
 
   pedirCita(){
 
-
+    let value = this.citasForm.get("hoursControl")?.value.value;
     //variables de mes dia y año por separado
     let anio =  this.citasForm.get('fecha')?.value._i.year;
     let mes = this.citasForm.get('fecha')?.value._i.month;
@@ -117,11 +117,11 @@ export class CalendarioComponent implements OnInit {
     //console.log(hora);
 
     //creación de Date
-    var fechaFinal=anio +"-"+ this.ci(mes+1) +"-"+ this.ci(dia)+"T"+this.ci(hora-((new Date().getTimezoneOffset())/60))+":" + min + ":00";
-    //console.log(fechaFinal);
+    var fechaFinal=anio +"-"+ this.ci(mes+1) +"-"+ this.ci(dia)+"T"+this.ci(hora)+":" + min + ":00";
+    console.log(fechaFinal);
     let fecha = new Date(fechaFinal);
 
-    //console.log(fecha);
+    console.log(fecha);
 
     //Creamos el objeto cita a partir de los datos del formulario y los datos que se reciben en el dialog
     let cita:Cita = {
@@ -146,7 +146,8 @@ export class CalendarioComponent implements OnInit {
     if (fechaExistente.length == 0){
 
       for (let i=0; i<23; i++) {
-        if (i == this.citasForm.get('hoursControl')?.value.value)
+        console.log(this.citasForm.get('hoursControl')?.value.value);
+        if (i == value)
             horas.push('1');
           else {
             horas.push('0')
