@@ -1,34 +1,37 @@
 
 <div mat-dialog-content>
-  <table class="table" >
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Fecha</th>
-        <th scope="col">Referencia Medico</th>
-        <th scope="col">Hora</th>
-        <th scope="col">Tipo Dolor</th>
-        <th scope="col">Calificacion</th>
-  
-      </tr>
-    </thead>
-    <tbody *ngFor="let citas of listaCitas; let i = index">
-      <tr>
-        <th scope="row">nº{{i+1}}</th>
-        <td>{{citas.fecha | date:'dd/MM/yyyy'}}</td>
-        <td>{{citas.refM}}</td>
-        <td>{{citas.fecha | date:'shortTime'}}</td>
-        <td>{{citas.tipoDolor}}</td>
-        <td fxLayout="row" fxLayoutAlign ="start center">
-          <div class="star-rating-container star-rating animation">
-            <div *ngFor ="let star of starsArr[i]"  [ngClass]="[star.class]"  >
-              <mat-icon (click)="selectStar(star.id,i)">{{star.icon}}</mat-icon>
+  <div style="overflow-y: scroll; max-height:450px;">
+    <table class="table"  >
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Fecha</th>
+          <th scope="col">Referencia Medico</th>
+          <th scope="col">Hora</th>
+          <th scope="col">Tipo Dolor</th>
+          <th scope="col">Calificacion</th>
+
+        </tr>
+      </thead>
+      <tbody *ngFor="let citas of listaCitas; let i = index">
+        <tr>
+          <th scope="row">nº{{i+1}}</th>
+          <td>{{citas.fecha | date:'dd/MM/yyyy'}}</td>
+          <td>{{citas.refM}}</td>
+          <td>{{citas.fecha | date:'shortTime'}}</td>
+          <td>{{citas.tipoDolor}}</td>
+          <td fxLayout="row" fxLayoutAlign ="start center">
+            <div class="star-rating-container star-rating animation">
+              <div *ngFor ="let star of starsArr[i]"  [ngClass]="[star.class]"  >
+                <mat-icon (click)="selectStar(star.id,i)">{{star.icon}}</mat-icon>
+              </div>
             </div>
-          </div>
-          </td>
-      </tr>
-    </tbody>
-  </table>
+            </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
 </div>
 
 <div mat-dialog-actions>
