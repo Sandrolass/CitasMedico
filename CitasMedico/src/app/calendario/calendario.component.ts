@@ -35,7 +35,7 @@ interface hour {
   ]
 })
 export class CalendarioComponent implements OnInit {
-  
+
   citasForm: FormGroup;
   disabledHours: boolean[];
   hoursControl = new FormControl('', Validators.required);
@@ -45,12 +45,12 @@ export class CalendarioComponent implements OnInit {
   selectFormControl = new FormControl('', Validators.required);
   hours: hour[] = [];
 
-  constructor( 
+  constructor(
     private formBuilder:FormBuilder,
     private citaService:CitaService,
     private medicoService: MedicoService,
-    public dialogRef: MatDialogRef<CalendarioComponent>, @Inject(MAT_DIALOG_DATA) 
-    public data:UsuarioCompleto)  
+    public dialogRef: MatDialogRef<CalendarioComponent>, @Inject(MAT_DIALOG_DATA)
+    public data:UsuarioCompleto)
     {
 
       this.citasForm = formBuilder.group({
@@ -132,22 +132,36 @@ export class CalendarioComponent implements OnInit {
     
 
     }
-    
-    
+
+  }
+
+  ci(valor:number){
+    if (valor<10){
+      return "0"+valor;
+    }else{
+      return valor;
+    }
   }
 
 
   pedirCita(){
 
-    
+
     //variables de mes dia y año por separado
     let anio =  this.citasForm.get('fecha')?.value._i.year;
     let mes = this.citasForm.get('fecha')?.value._i.month;
     let dia = this.citasForm.get('fecha')?.value._i.date;
+    let hora = parseInt(this.citasForm.get('hoursControl')?.value.name.split(":")[0]);
+    let min = this.citasForm.get('hoursControl')?.value.name.split(":")[1];
+    //console.log(hora);
 
     //creación de Date
-    let fecha = new Date(anio +"-"+ mes +"-"+ dia);
-    
+    var fechaFinal=anio +"-"+ this.ci(mes+1) +"-"+ this.ci(dia)+"T"+this.ci(hora-((new Date().getTimezoneOffset())/60))+":" + min + ":00";
+    //console.log(fechaFinal);
+    let fecha = new Date(fechaFinal);
+
+    //console.log(fecha);
+
     //Creamos el objeto cita a partir de los datos del formulario y los datos que se reciben en el dialog
     let cita:Cita = {
       fecha: fecha,
@@ -164,22 +178,22 @@ export class CalendarioComponent implements OnInit {
 
 
     let fechaExistente = fechasMedico.filter((data:any) => data.dia == dia && data.mes == mes && data.agno == anio);
-    
+
     let horas = new Array();
 
     if (fechaExistente.length == 0){
-     
+
       for (let i=0; i<23; i++) {
         if (i == this.citasForm.get('hoursControl')?.value.value)
             horas.push('1');
           else {
             horas.push('0')
           }
-        
+
       }
 
       let stringHoras = horas.join('');
-      
+
 
       fechasMedico.push({
         dia: dia,
@@ -190,7 +204,7 @@ export class CalendarioComponent implements OnInit {
     } else {
 
 
-      fechasMedico = fechasMedico.map((data:any) => { 
+      fechasMedico = fechasMedico.map((data:any) => {
         if(data.dia == dia && data.mes == mes && data.agno == anio){
 
           let arrayHoras = data.horas.split('');
@@ -198,18 +212,18 @@ export class CalendarioComponent implements OnInit {
           let posicionCita:number = parseInt((this.citasForm.get('hoursControl')?.value.value))
           
           arrayHoras[posicionCita] = 1;
-          
+
           data.horas = arrayHoras.join('');
 
 
-        } 
+        }
 
         return data;
-        
+
       })
     }
 
-    
+
     let medico:Medico = {
       _id: this.data.medico._id,
       refM: this.data.medico.refM,
@@ -217,20 +231,20 @@ export class CalendarioComponent implements OnInit {
       apellido: this.data.medico.apellido,
       dni: this.data.medico.dni,
       fecha: fechasMedico
-      
+
     }
 
-    
+
     this.citaService.insertCita(cita).subscribe(data => console.log(data));
 
-    this.medicoService.updateMedico(medico).subscribe(data => console.log(data));
+    this.medicoService.updateMedico(medico).subscribe(data => {console.log(data);this.close()});
 
-    
+
   }
 
   ngOnInit(): void {
   }
-  
+
 
   close(){
     this.dialogRef.close();
