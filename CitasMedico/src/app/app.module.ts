@@ -20,13 +20,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { ListaComponent } from './usuario/lista/lista.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { NotificacionComponent } from './calendario/notificacion/notificacion.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CalendarioComponent,
     NotFoundComponent,
+    NotificacionComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,7 +45,8 @@ import { MatInputModule } from '@angular/material/input';
     MatDialogModule,
     MatIconModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatSnackBarModule
   ],
   providers: [
     {
