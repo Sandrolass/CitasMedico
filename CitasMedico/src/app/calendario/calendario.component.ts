@@ -39,6 +39,8 @@ export class CalendarioComponent implements OnInit {
   citasForm: FormGroup;
   hoursControl = new FormControl('', Validators.required);
   fechaControl = new FormControl('', Validators.required);
+  tipoDolor = new FormControl('', Validators.required);
+  descripcion = new FormControl('', Validators.required);
   selectFormControl = new FormControl('', Validators.required);
   hours: hour[] = [];
 
@@ -52,7 +54,10 @@ export class CalendarioComponent implements OnInit {
 
       this.citasForm = formBuilder.group({
         fecha: this.fechaControl,
-        hoursControl: this.hoursControl
+        hoursControl: this.hoursControl,
+        tipoDolor: this.tipoDolor,
+        descripcion: this.descripcion,
+
       });
     
     
@@ -108,8 +113,8 @@ export class CalendarioComponent implements OnInit {
       fecha: fecha,
       refUsuario: this.data.dni,
       refM: this.data.medico.refM,
-      tipoDolor: 'fdafsa',
-      descripcion: 'fdafadsfas',
+      tipoDolor: this.citasForm.get('tipoDolor')?.value,
+      descripcion: this.citasForm.get('descripcion')?.value,
       calif: null
     }
 
@@ -118,10 +123,11 @@ export class CalendarioComponent implements OnInit {
     let fechasMedico:Fecha[] = this.data.medico.fecha;
 
 
-    let fechaExistente = fechasMedico.filter((data:any) => data == fecha);
+    let fechaExistente = fechasMedico.filter((data:any) => data.dia == dia && data.mes == mes && data.agno == anio);
     
     let horas = new Array();
 
+    console.log(fechaExistente);
     if (fechaExistente.length == 0){
      
       for (let i=0; i<23; i++) {
@@ -142,6 +148,28 @@ export class CalendarioComponent implements OnInit {
         agno: anio,
         horas: stringHoras
       })
+    } else {
+
+
+      fechasMedico = fechasMedico.map((data:any) => { 
+        if(data.dia == dia && data.mes == mes && data.agno == anio){
+
+          let arrayHoras = data.horas.split('');
+
+          let posicionCita:number = parseInt((this.citasForm.get('hoursControl')?.value.value))
+          
+          console.log(posicionCita);
+          console.log('valor array horas', arrayHoras);
+          arrayHoras[posicionCita] = 1;
+          
+          data.horas = arrayHoras.join('');
+
+
+        } 
+
+        return data;
+        
+      })
     }
 
     
@@ -156,13 +184,11 @@ export class CalendarioComponent implements OnInit {
     }
 
     
-    console.log(cita);
-    console.log(medico);
     this.citaService.insertCita(cita).subscribe(data => console.log(data));
 
     this.medicoService.updateMedico(medico).subscribe(data => console.log(data));
 
-    console.log('probando')
+    
   }
 
   ngOnInit(): void {

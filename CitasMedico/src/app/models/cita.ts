@@ -5,5 +5,5 @@ export interface Cita {
     refM: string,
     tipoDolor: string,
     descripcion: string,
-    calif:Number | null
+    calif:number | null
 }
