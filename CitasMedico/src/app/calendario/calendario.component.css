@@ -2,7 +2,11 @@ mat-form-field {
     width: 40%;
     margin-left: 10px;
     margin-right: 10px;  
-  } 
+  }
+  
+  .symptom {
+    width: 83% !important;
+  }
   
   mat-card {
     background-color: #eeeeee;

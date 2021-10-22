@@ -25,7 +25,7 @@
             <mat-error *ngIf="hoursControl.hasError('required')">Por favor, elija una hora</mat-error>
           </mat-form-field>
           
-          <mat-form-field appearance="fill">
+          <mat-form-field class="symptom" appearance="fill">
             <mat-label>Sintomas...</mat-label>
             <input matInput placeholder="Ej. Sintomas, molestias..." [formControl]="tipoDolor">
           </mat-form-field>
@@ -35,7 +35,7 @@
         <form>
           <mat-form-field class="description" appearance="fill" >
             <mat-label>Haga un pequeño resumen sobre los sintomas.</mat-label>
-            <textarea matInput placeholder="Ej. Me siento..." [formControl]="descripcion"></textarea>
+            <textarea matInput placeholder="Ej. Me siento..." [formControl]="descripcion" rows="6"></textarea>
           </mat-form-field>
         </form>
 
